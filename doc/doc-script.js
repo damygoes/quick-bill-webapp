@@ -6,9 +6,10 @@
 
 // Use localStorage to store data about the tree's state: whether or not
 // the tree is visible and which directories are expanded. Unless the state
-var sidebarVisible = (window.localStorage && window.localStorage.docker_showSidebar) ?
-                        window.localStorage.docker_showSidebar == 'yes' :
-                        defaultSidebar;
+var sidebarVisible =
+  window.localStorage && window.localStorage.docker_showSidebar
+    ? window.localStorage.docker_showSidebar == 'yes'
+    : defaultSidebar;
 
 /**
  * ## makeTree
@@ -36,11 +37,14 @@ function makeTree(treeData, root, filename) {
   if (sidebarVisible) document.body.className += ' sidebar';
 
   // Restore scroll position from localStorage if set. And attach scroll handler
-  if (window.localStorage && window.localStorage.docker_treeScroll) treeNode.scrollTop = window.localStorage.docker_treeScroll;
+  if (window.localStorage && window.localStorage.docker_treeScroll)
+    treeNode.scrollTop = window.localStorage.docker_treeScroll;
   treeNode.onscroll = treeScrolled;
 
   // Only set a class to allow CSS transitions after the tree state has been painted
-  setTimeout(function() { document.body.className += ' slidey'; }, 100);
+  setTimeout(function () {
+    document.body.className += ' slidey';
+  }, 100);
 }
 
 /**
@@ -51,7 +55,8 @@ function makeTree(treeData, root, filename) {
  */
 function treeScrolled() {
   var tree = document.getElementById('tree');
-  if (window.localStorage) window.localStorage.docker_treeScroll = tree.scrollTop;
+  if (window.localStorage)
+    window.localStorage.docker_treeScroll = tree.scrollTop;
 }
 
 /**
@@ -78,13 +83,14 @@ function nodeClicked(e) {
   var path = t.getAttribute('rel');
   if (t.className.indexOf('open') !== -1) {
     t.className = t.className.replace(/\s*open/g, '');
-    if (window.localStorage) window.localStorage.removeItem('docker_openPath:' + path);
+    if (window.localStorage)
+      window.localStorage.removeItem('docker_openPath:' + path);
   } else {
     t.className += ' open';
-    if (window.localStorage) window.localStorage['docker_openPath:' + path] = 'yes';
+    if (window.localStorage)
+      window.localStorage['docker_openPath:' + path] = 'yes';
   }
 }
-
 
 /**
  * ## nodeHtml
@@ -98,8 +104,11 @@ function nodeClicked(e) {
  */
 function nodeHtml(nodename, node, path, root) {
   // Firstly, figure out whether or not the directory is expanded from localStorage
-  var isOpen = window.localStorage && window.localStorage['docker_openPath:' + path] == 'yes';
-  var out = '<div class="dir' + (isOpen ? ' open' : '') + '" rel="' + path + '">';
+  var isOpen =
+    window.localStorage &&
+    window.localStorage['docker_openPath:' + path] == 'yes';
+  var out =
+    '<div class="dir' + (isOpen ? ' open' : '') + '" rel="' + path + '">';
   out += '<div class="nodename">' + nodename + '</div>';
   out += '<div class="children">';
 
@@ -107,10 +116,16 @@ function nodeHtml(nodename, node, path, root) {
   if (node.dirs) {
     var dirs = [];
     for (var i in node.dirs) {
-      if (node.dirs.hasOwnProperty(i)) dirs.push({ name: i, html: nodeHtml(i, node.dirs[i], path + i + '/', root) });
+      if (node.dirs.hasOwnProperty(i))
+        dirs.push({
+          name: i,
+          html: nodeHtml(i, node.dirs[i], path + i + '/', root),
+        });
     }
     // Have to store them in an array first and then sort them alphabetically here
-    dirs.sort(function(a, b) { return (a.name > b.name) ? 1 : (a.name == b.name) ? 0 : -1; });
+    dirs.sort(function (a, b) {
+      return a.name > b.name ? 1 : a.name == b.name ? 0 : -1;
+    });
 
     for (var k = 0; k < dirs.length; k += 1) out += dirs[k].html;
   }
@@ -119,7 +134,14 @@ function nodeHtml(nodename, node, path, root) {
   if (node.files) {
     node.files.sort();
     for (var j = 0; j < node.files.length; j += 1) {
-      out += '<a class="file" href="' + root + path + node.files[j] + '.html">' + node.files[j] + '</a>';
+      out +=
+        '<a class="file" href="' +
+        root +
+        path +
+        node.files[j] +
+        '.html">' +
+        node.files[j] +
+        '</a>';
     }
   }
 
@@ -137,7 +159,10 @@ function nodeHtml(nodename, node, path, root) {
 function toggleTree() {
   // Do the actual toggling by modifying the class on the body element. That way we can get some nice CSS transitions going.
   if (sidebarVisible) {
-    document.body.className = document.body.className.replace(/\s*sidebar/g, '');
+    document.body.className = document.body.className.replace(
+      /\s*sidebar/g,
+      ''
+    );
     sidebarVisible = false;
   } else {
     document.body.className += ' sidebar';
@@ -165,9 +190,14 @@ function wireUpTabs() {
   for (var i = 0, l = children.length; i < l; i += 1) {
     // Ignore text nodes
     if (children[i].nodeType !== 1) continue;
-    children[i].addEventListener('click', function(c) {
-      return function() { switchTab(c); };
-    }(children[i].className));
+    children[i].addEventListener(
+      'click',
+      (function (c) {
+        return function () {
+          switchTab(c);
+        };
+      })(children[i].className)
+    );
   }
 }
 
@@ -192,7 +222,8 @@ function switchTab(tab) {
     if (t === tab) {
       // Show the tab pane, select the tab button
       document.getElementById(t).style.display = 'block';
-      if (children[i].className.indexOf('selected') === -1) children[i].className += ' selected';
+      if (children[i].className.indexOf('selected') === -1)
+        children[i].className += ' selected';
     } else {
       // Hide the tab pane, deselect the tab button
       document.getElementById(t).style.display = 'none';
@@ -209,13 +240,14 @@ function switchTab(tab) {
  *
  * When the document is ready, make the sidebar and all that jazz
  */
-(function(init) {
+(function (init) {
   if (window.addEventListener) {
     window.addEventListener('DOMContentLoaded', init);
-  } else { // IE8 and below
+  } else {
+    // IE8 and below
     window.onload = init;
   }
-}(function() {
+})(function () {
   makeTree(tree, relativeDir, thisFile);
   wireUpTabs();
 
@@ -225,4 +257,4 @@ function switchTab(tab) {
   } else {
     switchTab('tree');
   }
-}));
+});
