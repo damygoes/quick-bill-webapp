@@ -1,4 +1,4 @@
-import { router } from '@shared/lib/router';
+import { router } from '@lib/router';
 import { Suspense } from 'react';
 import { RouterProvider } from 'react-router-dom';
 function App() {
