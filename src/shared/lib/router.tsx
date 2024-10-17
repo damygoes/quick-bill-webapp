@@ -1,3 +1,4 @@
+import LoginPage from '@pages/auth/LoginPage';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,11 +9,12 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       {/* //* Public Routes */}
-      <Route path="/" element={<div> Login </div>} />,
+      <Route path="/" element={<LoginPage />} />,
       <Route path="onboarding" element={<div> Onboarding </div>} />
       {/* //* Protected Routes */}
       <Route element={<div> Require Auth Element </div>}>
         <Route element={<div>Root Layout</div>}>
+          <Route path="/dashboard" element={<div>Dashboard Screen</div>} />,
           <Route path="/companies" element={<div>Companies Screen</div>} />,
           <Route path="/customers" element={<div>Customers Screen</div>} />,
           <Route path="/invoices" element={<div>Invoices Screen</div>} />,
