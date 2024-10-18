@@ -51,6 +51,14 @@ export interface InputProps extends VariantProps<typeof inputVariants> {
   iconBefore?: React.ReactNode;
   /** Optional suffix icon */
   iconAfter?: React.ReactNode;
+  /** Optional id (e.g for testing) */
+  id?: string;
+  /** If the field is required */
+  required?: boolean;
+  /** Optional validation error */
+  validationError?: boolean;
+  /** Optional onChange handler */
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -65,6 +73,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled,
       iconBefore,
       iconAfter,
+      id,
+      required,
+      validationError,
+      onChange,
       ...props
     },
     ref
@@ -80,13 +92,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         {/* Input element */}
         <input
+          id={id}
+          required={required}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
           aria-disabled={disabled}
+          onChange={onChange}
           className={cn(inputVariants({ variant, size, radius }), {
-            'pl-10': iconBefore, // Add padding when iconBefore exists
-            'pr-10': iconAfter, // Add padding when iconAfter exists
+            'pl-10': iconBefore,
+            'pr-10': iconAfter,
+            'border-destructive focus-visible:ring-destructive':
+              validationError,
           })}
           ref={ref}
           {...props}

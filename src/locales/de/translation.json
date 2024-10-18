@@ -1,0 +1,17 @@
+{
+  "loginForm": {
+    "title": "Einloggen",
+    "descriptionText": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich bei Ihrem Konto anzumelden",
+    "email": "E-Mail",
+    "emailPlaceholder": "E-Mail eingeben",
+    "button": "Einloggen",
+    "noAccountText": "Sie haben noch kein Konto?",
+    "registerText": "Registrieren"
+  },
+  "otpForm": {
+    "title": "Verifizierung",
+    "descriptionText": "Geben Sie das OTP ein, das an {{yourEmail}} gesendet wurde",
+    "pin": "OTP",
+    "button": "E-Mail verifizieren"
+  }
+}

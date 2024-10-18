@@ -65,13 +65,23 @@ export default {
     fontFamily: {
       sans: ['Lato', 'sans-serif'],
     },
+    fontSize: {
+      '3xs': 'calc(var(--font-size) - 0.375rem)', // 10px
+      '2xs': 'calc(var(--font-size) - 0.25rem)', // 12px
+      xs: 'calc(var(--font-size) - 0.125rem)', // 14px
+      sm: 'var(--font-size)', // 16px
+      base: 'calc(var(--font-size) + 0.125rem)', // 18px
+      lg: 'calc(var(--font-size) + 0.25rem)', // 20px
+      xl: 'calc(var(--font-size) + 0.375rem)', // 22px
+      '2xl': 'calc(var(--font-size) + 0.5rem)', // 24px
+      '3xl': 'calc(var(--font-size) + 0.625rem)', // 26px
+    },
+    borderRadius: {
+      lg: 'var(--radius)',
+      md: 'calc(var(--radius) - 2px)',
+      sm: 'calc(var(--radius) - 4px)',
+    },
     extend: {
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-
       keyframes: {
         'caret-blink': {
           '0%,70%,100%': { opacity: '1' },

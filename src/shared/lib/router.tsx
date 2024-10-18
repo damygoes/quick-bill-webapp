@@ -1,4 +1,5 @@
 import LoginPage from '@pages/auth/LoginPage';
+import OtpPage from '@pages/auth/OtpPage';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -10,6 +11,7 @@ export const router = createBrowserRouter(
     <Route>
       {/* //* Public Routes */}
       <Route path="/" element={<LoginPage />} />,
+      <Route path="/verify-otp" element={<OtpPage />} />,
       <Route path="onboarding" element={<div> Onboarding </div>} />
       {/* //* Protected Routes */}
       <Route element={<div> Require Auth Element </div>}>

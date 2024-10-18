@@ -1,0 +1,17 @@
+{
+  "loginForm": {
+    "title": "Login",
+    "descriptionText": "Enter your email below to login to your account",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "button": "Login",
+    "noAccountText": "Don't have an account?",
+    "registerText": "Sign up"
+  },
+  "otpForm": {
+    "title": "Verification",
+    "descriptionText": "Enter the OTP sent to {{yourEmail}}",
+    "pin": "OTP",
+    "button": "Verify Email"
+  }
+}
