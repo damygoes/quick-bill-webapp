@@ -6,12 +6,14 @@
     "emailPlaceholder": "Enter your email",
     "button": "Login",
     "noAccountText": "Don't have an account?",
-    "registerText": "Sign up"
+    "registerText": "Sign up",
+    "loadingText": "Logging in..."
   },
   "otpForm": {
     "title": "Verification",
     "descriptionText": "Enter the OTP sent to {{yourEmail}}",
     "pin": "OTP",
-    "button": "Verify Email"
+    "button": "Verify Email",
+    "verifyingText": "Verifying..."
   }
 }

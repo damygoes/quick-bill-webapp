@@ -1,4 +1,4 @@
-import { Label } from '@components/label';
+import { Label } from '@components/Label';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Meta configuration

@@ -2,7 +2,7 @@ import { cn } from '@lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
-import { LoaderIcon } from './icons';
+import { LoaderIcon } from './Icons';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
@@ -24,7 +24,7 @@ const buttonVariants = cva(
         sm: 'h-8 rounded-md px-md text-xs',
         md: 'h-9 px-4 py-xs',
         lg: 'h-10 rounded-md px-2xl',
-        // icon: 'h-9 w-9',
+        icon: 'h-9 w-9',
       },
       radius: {
         none: 'rounded-none',
@@ -45,13 +45,13 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /** Button contents */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** Optional click handler */
   onClick?: () => void;
   /** If true, the button will be rendered as a child of a Slot */
   asChild?: boolean;
   /** How large should the button be? */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'icon';
   /** The radius of the button */
   radius?: 'none' | 'md' | 'lg' | 'full';
   /** The variant of the button */

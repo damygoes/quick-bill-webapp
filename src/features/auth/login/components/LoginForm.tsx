@@ -1,4 +1,4 @@
-import { Button } from '@components/button';
+import { Button } from '@components/Button';
 import {
   Form,
   FormControl,
@@ -6,11 +6,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@components/form';
-import Heading from '@components/heading';
-import { Input } from '@components/input';
-import Typography from '@components/typography';
+} from '@components/Form';
+import Heading from '@components/Heading';
+import { Input } from '@components/Input';
+import { useToast } from '@components/toast/useToast';
+import Typography from '@components/Typography';
+import { requestOTP } from '@features/auth/requests';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,6 +22,8 @@ import { loginFormSchema, LoginFormValues } from '../utils/loginFormSchema';
 const LoginForm = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
@@ -31,15 +36,34 @@ const LoginForm = () => {
 
   const isEmailFieldInvalid = !!form.formState.errors.email && !emailValue;
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log('data', data);
+  const onSubmit = async (data: LoginFormValues) => {
+    setIsSubmitting(true);
     try {
       localStorage.setItem('quickbill_temp-email', data.email);
-      // api request
-      navigate('/verify-otp');
+      const result = await requestOTP(data.email);
+      if (result.status === 200) {
+        setIsSubmitting(false);
+        navigate('/verify-otp');
+      } else {
+        setIsSubmitting(false);
+        toast({
+          variant: 'destructive',
+          title: 'OTP request failed',
+          description: 'Please try again later',
+        });
+        return;
+      }
     } catch (error) {
       console.error('error', error);
+      setIsSubmitting(false);
+      toast({
+        variant: 'destructive',
+        title: 'An error occurred',
+        description: 'Please try again later',
+      });
     }
+    setIsSubmitting(false);
+    form.reset();
   };
 
   return (
@@ -77,8 +101,10 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            {t('loginForm.button', 'Login')}
+          <Button type="submit" className="w-full" isLoading={isSubmitting}>
+            {isSubmitting
+              ? t('loginForm.loadingText', 'Loading...')
+              : t('loginForm.loginText', 'Login')}
           </Button>
         </div>
         <div className="text-sm text-center">

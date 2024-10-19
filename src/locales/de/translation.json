@@ -6,12 +6,14 @@
     "emailPlaceholder": "E-Mail eingeben",
     "button": "Einloggen",
     "noAccountText": "Sie haben noch kein Konto?",
-    "registerText": "Registrieren"
+    "registerText": "Registrieren",
+    "loadingText": "Einloggen..."
   },
   "otpForm": {
     "title": "Verifizierung",
     "descriptionText": "Geben Sie das OTP ein, das an {{yourEmail}} gesendet wurde",
     "pin": "OTP",
-    "button": "E-Mail verifizieren"
+    "button": "E-Mail verifizieren",
+    "verifyingText": "Verifizierung..."
   }
 }

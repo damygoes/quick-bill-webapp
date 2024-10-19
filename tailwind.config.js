@@ -14,7 +14,7 @@ export default {
   prefix: '',
   theme: {
     container: {
-      center: true,
+      center: 'true',
       padding: '2rem',
       screens: {
         '2xl': '1400px',
@@ -66,15 +66,15 @@ export default {
       sans: ['Lato', 'sans-serif'],
     },
     fontSize: {
-      '3xs': 'calc(var(--font-size) - 0.375rem)', // 10px
-      '2xs': 'calc(var(--font-size) - 0.25rem)', // 12px
-      xs: 'calc(var(--font-size) - 0.125rem)', // 14px
-      sm: 'var(--font-size)', // 16px
-      base: 'calc(var(--font-size) + 0.125rem)', // 18px
-      lg: 'calc(var(--font-size) + 0.25rem)', // 20px
-      xl: 'calc(var(--font-size) + 0.375rem)', // 22px
-      '2xl': 'calc(var(--font-size) + 0.5rem)', // 24px
-      '3xl': 'calc(var(--font-size) + 0.625rem)', // 26px
+      '3xs': 'calc(var(--font-size) - 0.375rem)',
+      '2xs': 'calc(var(--font-size) - 0.25rem)',
+      xs: 'calc(var(--font-size) - 0.125rem)',
+      sm: 'var(--font-size)',
+      base: 'calc(var(--font-size) + 0.125rem)',
+      lg: 'calc(var(--font-size) + 0.25rem)',
+      xl: 'calc(var(--font-size) + 0.375rem)',
+      '2xl': 'calc(var(--font-size) + 0.5rem)',
+      '3xl': 'calc(var(--font-size) + 0.625rem)',
     },
     borderRadius: {
       lg: 'var(--radius)',
@@ -84,12 +84,28 @@ export default {
     extend: {
       keyframes: {
         'caret-blink': {
-          '0%,70%,100%': { opacity: '1' },
-          '20%,50%': { opacity: '0' },
+          '0%,70%,100%': {
+            opacity: '1',
+          },
+          '20%,50%': {
+            opacity: '0',
+          },
         },
       },
       animation: {
         'caret-blink': 'caret-blink 1.25s ease-out infinite',
+      },
+      colors: {
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
       },
     },
   },

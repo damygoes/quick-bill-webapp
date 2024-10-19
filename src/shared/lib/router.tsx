@@ -1,5 +1,8 @@
+import RootLayout from '@components/layout/RootLayout';
+import AuthWrapper from '@features/auth/auth-wrapper/AuthWrapper';
 import LoginPage from '@pages/auth/LoginPage';
 import OtpPage from '@pages/auth/OtpPage';
+import DashboardPage from '@pages/DashboardPage';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -14,9 +17,9 @@ export const router = createBrowserRouter(
       <Route path="/verify-otp" element={<OtpPage />} />,
       <Route path="onboarding" element={<div> Onboarding </div>} />
       {/* //* Protected Routes */}
-      <Route element={<div> Require Auth Element </div>}>
-        <Route element={<div>Root Layout</div>}>
-          <Route path="/dashboard" element={<div>Dashboard Screen</div>} />,
+      <Route element={<AuthWrapper />}>
+        <Route element={<RootLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />,
           <Route path="/companies" element={<div>Companies Screen</div>} />,
           <Route path="/customers" element={<div>Customers Screen</div>} />,
           <Route path="/invoices" element={<div>Invoices Screen</div>} />,

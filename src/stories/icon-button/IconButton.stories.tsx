@@ -1,5 +1,5 @@
-import { IconButton } from '@components/icon-button';
-import { LoaderIcon, SendHorizonalIcon } from '@components/icons';
+import { IconButton } from '@components/IconButton';
+import { LoaderIcon, SendHorizonalIcon } from '@components/Icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 

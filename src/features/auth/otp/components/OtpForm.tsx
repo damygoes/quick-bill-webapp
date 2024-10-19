@@ -1,23 +1,28 @@
-import { Button } from '@components/button';
+import { Button } from '@components/Button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@components/form';
-import Heading from '@components/heading';
+} from '@components/Form';
+import Heading from '@components/Heading';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@components/input-otp';
-import Typography from '@components/typography';
+} from '@components/InputOtp';
+import { useToast } from '@components/toast/useToast';
+import Typography from '@components/Typography';
+import { loginWithOtp } from '@features/auth/requests';
+import { fetchAuthenticatedUser } from '@features/user/requests';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { handleAuthNavigation } from '../utils/handleAuthNavigation';
 import { otpFormSchema, OtpFormValues } from '../utils/otpFormSchema';
 
 interface OtpFormProps {
@@ -27,6 +32,8 @@ interface OtpFormProps {
 const OtpForm = ({ tempUserEmail }: OtpFormProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isVerifying, setIsVerifying] = useState(false);
 
   const form = useForm<OtpFormValues>({
     resolver: zodResolver(otpFormSchema),
@@ -39,14 +46,39 @@ const OtpForm = ({ tempUserEmail }: OtpFormProps) => {
 
   const isEmailFieldInvalid = !!form.formState.errors.pin && !emailValue;
 
-  const onSubmit = (data: OtpFormValues) => {
-    console.log('data', data);
+  const onSubmit = async (data: OtpFormValues) => {
+    setIsVerifying(true);
     try {
-      // api request
-      localStorage.removeItem('quickbill_temp-email');
-      navigate('/onboarding');
+      const result = await loginWithOtp({
+        email: tempUserEmail,
+        otp: data.pin,
+      });
+
+      if (result.status === 200) {
+        localStorage.removeItem('quickbill_temp-email');
+        const user = await fetchAuthenticatedUser();
+        if (user) {
+          handleAuthNavigation({ user, navigate });
+        }
+        setIsVerifying(false);
+      } else {
+        console.error('Login failed:', result);
+        toast({
+          variant: 'destructive',
+          title: 'Login failed',
+          description: result,
+        });
+        setIsVerifying(false);
+        navigate('/');
+      }
     } catch (error) {
-      console.error('error', error);
+      console.error('An error occurred during OTP login:', error);
+      setIsVerifying(false);
+      toast({
+        variant: 'destructive',
+        title: 'An error occurred',
+        description: 'Please try again later',
+      });
     }
   };
 
@@ -89,8 +121,10 @@ const OtpForm = ({ tempUserEmail }: OtpFormProps) => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            {t('otpForm.button', 'Verify OTP')}
+          <Button type="submit" className="w-full" isLoading={isVerifying}>
+            {isVerifying
+              ? t('otpForm.verifyingText', 'Verifying...')
+              : t('otpForm.button', 'Verify OTP')}
           </Button>
         </div>
       </form>

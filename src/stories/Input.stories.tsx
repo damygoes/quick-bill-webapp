@@ -1,5 +1,5 @@
-import { SendHorizonalIcon } from '@components/icons';
-import { Input } from '@components/input';
+import { SendHorizonalIcon } from '@components/Icons';
+import { Input } from '@components/Input';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Meta configuration
