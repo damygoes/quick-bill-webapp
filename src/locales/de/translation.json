@@ -15,5 +15,13 @@
     "pin": "OTP",
     "button": "E-Mail verifizieren",
     "verifyingText": "Verifizierung..."
+  },
+  "auth": {
+    "logout": "Ausloggen"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
   }
 }

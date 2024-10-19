@@ -18,10 +18,18 @@ const typographyVariants = cva('text-balance text-muted-foreground', {
       semibold: 'font-semibold',
       bold: 'font-bold',
     },
+    appearance: {
+      default: 'text-muted-foreground',
+      primary: 'text-primary',
+      secondary: 'text-secondary',
+      accent: 'text-accent',
+      destructive: 'text-destructive',
+    },
   },
   defaultVariants: {
     size: 'sm',
     weight: 'normal',
+    appearance: 'default',
   },
 });
 
@@ -35,12 +43,20 @@ export interface TypographyProps
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
   /** The variant of the typography */
   variant?: 'p' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  /** Optional class name */
+  /** The appearance of the typography */
+  appearance?: 'default' | 'primary' | 'secondary' | 'accent' | 'destructive';
 }
 
 const Typography = React.forwardRef<HTMLParagraphElement, TypographyProps>(
   (
-    { children, size = 'sm', weight = 'normal', variant = 'p', ...props },
+    {
+      children,
+      size = 'sm',
+      weight = 'normal',
+      variant = 'p',
+      appearance = 'default',
+      ...props
+    },
     ref
   ) => {
     let Tag: keyof JSX.IntrinsicElements;
@@ -69,7 +85,7 @@ const Typography = React.forwardRef<HTMLParagraphElement, TypographyProps>(
     return (
       <Tag
         ref={ref}
-        className={typographyVariants({ size, weight })}
+        className={typographyVariants({ size, weight, appearance })}
         {...props}
       >
         {children}

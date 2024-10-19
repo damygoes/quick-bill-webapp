@@ -1,7 +1,52 @@
 import { createIcon } from '@shared/utils/createIcon';
-import { Loader, SendHorizonal } from 'lucide-react';
+import {
+  Building2,
+  Languages,
+  LayoutDashboard,
+  LifeBuoy,
+  Loader,
+  LogOut,
+  Moon,
+  PanelLeft,
+  ReceiptText,
+  Send,
+  SendHorizonal,
+  Settings,
+  Sun,
+  SunMoon,
+  Users,
+} from 'lucide-react';
 
 const SendHorizonalIcon = createIcon(SendHorizonal);
 const LoaderIcon = createIcon(Loader);
+const PanelLeftIcon = createIcon(PanelLeft);
+const DashboardIcon = createIcon(LayoutDashboard);
+const ClientsIcon = createIcon(Users);
+const CompaniesIcon = createIcon(Building2);
+const InvoiceIcon = createIcon(ReceiptText);
+const SettingsIcon = createIcon(Settings);
+const SupportIcon = createIcon(LifeBuoy);
+const FeedbackIcon = createIcon(Send);
+const LogoutIcon = createIcon(LogOut);
+const ThemeIcon = createIcon(SunMoon);
+const LanguagesIcon = createIcon(Languages);
+const SunIcon = createIcon(Sun);
+const MoonIcon = createIcon(Moon);
 
-export { LoaderIcon, SendHorizonalIcon };
+export {
+  ClientsIcon,
+  CompaniesIcon,
+  DashboardIcon,
+  FeedbackIcon,
+  InvoiceIcon,
+  LanguagesIcon,
+  LoaderIcon,
+  LogoutIcon,
+  MoonIcon,
+  PanelLeftIcon,
+  SendHorizonalIcon,
+  SettingsIcon,
+  SunIcon,
+  SupportIcon,
+  ThemeIcon,
+};

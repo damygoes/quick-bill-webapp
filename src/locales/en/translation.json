@@ -15,5 +15,13 @@
     "pin": "OTP",
     "button": "Verify Email",
     "verifyingText": "Verifying..."
+  },
+  "auth": {
+    "logout": "Logout"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
 }

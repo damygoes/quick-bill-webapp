@@ -10,15 +10,23 @@ export class AuthService {
       ?.split('=')[1];
   }
 
-  static async refreshAccessToken(): Promise<void> {
+  // static async refreshAccessToken() {
+  //   try {
+  //     const response = await axiosClient.post('/auth/refresh-token');
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Failed to refresh access token:', error);
+  //     throw error;
+  //   }
+  // }
+
+  static async refreshAccessToken() {
     try {
-      const response = await axiosClient.post('/auth/refresh-token', {
-        refreshToken: AuthService.getRefreshToken(),
-      });
-      // Store new access token in cookies
-      AuthService.setAccessToken(response.data.accessToken);
-    } catch {
-      throw new Error('Unable to refresh access token');
+      await axiosClient.post('/auth/refresh-token');
+      // No need to return anything since tokens are set in cookies
+    } catch (error) {
+      console.error('Failed to refresh access token:', error);
+      throw error;
     }
   }
 

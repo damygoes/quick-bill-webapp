@@ -20,9 +20,11 @@ export const router = createBrowserRouter(
       <Route element={<AuthWrapper />}>
         <Route element={<RootLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />,
+          <Route path="/invoices" element={<div>Invoices Screen</div>} />,
           <Route path="/companies" element={<div>Companies Screen</div>} />,
           <Route path="/customers" element={<div>Customers Screen</div>} />,
-          <Route path="/invoices" element={<div>Invoices Screen</div>} />,
+          <Route path="/support" element={<div>Support Screen</div>} />,
+          <Route path="/feedback" element={<div>Feedback Screen</div>} />,
         </Route>
       </Route>
       {/* //* Catch All */}

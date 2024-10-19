@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@components/ThemeProvider';
 import { Toaster } from '@components/toast/toaster';
 import { router } from '@lib/router';
 import i18n from '@services/i18n/i18n';
@@ -11,8 +12,10 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <QueryClientProvider client={queryClient}>
-        <Toaster />
-        <RouterProvider router={router} />
+        <ThemeProvider defaultTheme="light" storageKey="quickbill-ui-theme">
+          <Toaster />
+          <RouterProvider router={router} />
+        </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Suspense>
