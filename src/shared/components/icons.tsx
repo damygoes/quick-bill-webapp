@@ -9,6 +9,7 @@ import {
   Moon,
   PanelLeft,
   ReceiptText,
+  Search,
   Send,
   SendHorizonal,
   Settings,
@@ -32,6 +33,7 @@ const ThemeIcon = createIcon(SunMoon);
 const LanguagesIcon = createIcon(Languages);
 const SunIcon = createIcon(Sun);
 const MoonIcon = createIcon(Moon);
+const SearchIcon = createIcon(Search);
 
 export {
   ClientsIcon,
@@ -44,6 +46,7 @@ export {
   LogoutIcon,
   MoonIcon,
   PanelLeftIcon,
+  SearchIcon,
   SendHorizonalIcon,
   SettingsIcon,
   SunIcon,

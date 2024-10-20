@@ -6,15 +6,19 @@ import {
 } from '@components/Sidebar';
 import * as React from 'react';
 
+export interface NavSwitchItem {
+  title: React.ReactNode;
+  icon: React.FC<React.ComponentPropsWithoutRef<'svg'>> | React.ReactNode;
+}
+
+interface NavSwitchesProps {
+  actions: NavSwitchItem[];
+}
+
 export function NavSwitches({
   actions,
   ...props
-}: {
-  actions: {
-    title: React.ReactNode;
-    icon: React.FC<React.ComponentPropsWithoutRef<'svg'>> | React.ReactNode;
-  }[];
-} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+}: NavSwitchesProps & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>

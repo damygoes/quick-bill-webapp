@@ -3,7 +3,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
 const inputVariants = cva(
-  'flex h-9 w-full rounded-md border border-solid bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+  'flex h-9 w-full rounded-md border border-solid bg-transparent px-3 py-1 text-sm text-input shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -59,6 +59,8 @@ export interface InputProps extends VariantProps<typeof inputVariants> {
   validationError?: boolean;
   /** Optional onChange handler */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Optional value */
+  value?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -77,6 +79,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       required,
       validationError,
       onChange,
+      value,
       ...props
     },
     ref
@@ -99,6 +102,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
           aria-disabled={disabled}
           onChange={onChange}
+          value={value}
           className={cn(inputVariants({ variant, size, radius }), {
             'pl-10': iconBefore,
             'pr-10': iconAfter,

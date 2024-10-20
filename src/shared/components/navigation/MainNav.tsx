@@ -6,19 +6,14 @@ import {
   SidebarMenuItem,
 } from '@components/Sidebar';
 import { cn } from '@lib/utils';
-import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { NavItem } from './NavItem';
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    name: string;
-    url: string;
-    icon: React.FC<React.ComponentPropsWithoutRef<'svg'>> | ReactNode;
-    // icon: LucideIcon
-  }[];
-}) {
+interface MainNavProps {
+  items: NavItem[];
+}
+
+const MainNav = ({ items }: MainNavProps) => {
   const location = useLocation();
   const activeItem = items.find((item) =>
     location.pathname.startsWith(item.url)
@@ -53,4 +48,6 @@ export function NavMain({
       </SidebarMenu>
     </SidebarGroup>
   );
-}
+};
+
+export default MainNav;

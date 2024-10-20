@@ -8,18 +8,16 @@ import {
 import { cn } from '@lib/utils';
 import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { NavItem } from './NavItem';
 
-export function NavSecondary({
+interface SecondaryNavProps {
+  items: NavItem[];
+}
+
+const SecondaryNav = ({
   items,
   ...props
-}: {
-  items: {
-    title: string;
-    url: string;
-    // icon: LucideIcon
-    icon: React.FC<React.ComponentPropsWithoutRef<'svg'>> | React.ReactNode;
-  }[];
-} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+}: SecondaryNavProps & React.ComponentPropsWithoutRef<typeof SidebarGroup>) => {
   const location = useLocation();
   const activeItem = items.find((item) =>
     location.pathname.startsWith(item.url)
@@ -30,7 +28,7 @@ export function NavSecondary({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem
-              key={item.title}
+              key={item.name}
               className={cn({
                 'bg-sidebar-primary text-sidebar-primary-foreground rounded-md':
                   activeItem === item,
@@ -46,7 +44,7 @@ export function NavSecondary({
               >
                 <Link to={item.url}>
                   {typeof item.icon === 'function' ? <item.icon /> : item.icon}
-                  <span>{item.title}</span>
+                  <span>{item.name}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -55,4 +53,6 @@ export function NavSecondary({
       </SidebarGroupContent>
     </SidebarGroup>
   );
-}
+};
+
+export default SecondaryNav;

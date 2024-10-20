@@ -23,6 +23,7 @@ import {
   CreditCard,
   Sparkles,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface NavUserProps {
   user: User | null;
@@ -30,6 +31,7 @@ interface NavUserProps {
 
 export function NavUser({ user }: NavUserProps) {
   const { isMobile } = useSidebar();
+  const { t } = useTranslation();
 
   if (!user) {
     return null;
@@ -84,22 +86,22 @@ export function NavUser({ user }: NavUserProps) {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                Upgrade to Pro
+                {t('navigation.user.upgradeToPro', 'Upgrade to')} Pro
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
-                Account
+                {t('navigation.user.account', 'Account')}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
-                Billing
+                {t('navigation.user.billing', 'Billing')}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell />
-                Notifications
+                {t('navigation.user.notifications', 'Notifications')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

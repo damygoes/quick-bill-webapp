@@ -23,5 +23,26 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "navigation": {
+    "main": {
+      "dashboard": "Dashboard",
+      "invoicing": "Invoicing",
+      "companies": "Companies",
+      "customers": "Customers"
+    },
+    "secondary": {
+      "support": "Support",
+      "feedback": "Feedback"
+    },
+    "user": {
+      "account": "Account",
+      "billing": "Billing",
+      "notifications": "Notifications",
+      "upgradeToPro": "Upgrade to"
+    }
+  },
+  "searchbar": {
+    "placeholder": "Search..."
   }
 }

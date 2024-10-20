@@ -23,5 +23,26 @@
     "light": "Hell",
     "dark": "Dunkel",
     "system": "System"
+  },
+  "navigation": {
+    "main": {
+      "dashboard": "Dashboard",
+      "invoicing": "Rechnungsstellung",
+      "companies": "Unternehmen",
+      "customers": "Kunden"
+    },
+    "secondary": {
+      "support": "Hilfe",
+      "feedback": "Feedback"
+    },
+    "user": {
+      "account": "Konto",
+      "billing": "Abrechnung",
+      "notifications": "Benachrichtigungen",
+      "upgradeToPro": "Upgrade zu"
+    }
+  },
+  "searchbar": {
+    "placeholder": "Suchen..."
   }
 }

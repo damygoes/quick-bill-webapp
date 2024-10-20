@@ -2,6 +2,7 @@ import { ThemeProvider } from '@components/ThemeProvider';
 import { Toaster } from '@components/toast/toaster';
 import { router } from '@lib/router';
 import i18n from '@services/i18n/i18n';
+import { SearchProvider } from '@shared/context/SearchContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Suspense } from 'react';
@@ -13,8 +14,10 @@ function App() {
     <Suspense fallback={<div>Loading...</div>}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="light" storageKey="quickbill-ui-theme">
-          <Toaster />
-          <RouterProvider router={router} />
+          <SearchProvider>
+            <Toaster />
+            <RouterProvider router={router} />
+          </SearchProvider>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
