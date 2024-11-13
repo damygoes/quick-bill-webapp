@@ -8,7 +8,7 @@ import {
   FormMessage,
 } from '@components/Form';
 import Heading from '@components/Heading';
-import { Input } from '@components/Input';
+import { Input } from '@components/input/Input';
 import { useToast } from '@components/toast/useToast';
 import Typography from '@components/Typography';
 import { requestOTP } from '@features/auth/requests';

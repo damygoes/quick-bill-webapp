@@ -3,7 +3,7 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@components/InputOtp';
+} from '@components/input/InputOtp';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Meta configuration

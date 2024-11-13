@@ -1,5 +1,11 @@
-import { SendHorizonalIcon } from '@components/Icons';
-import { Input } from '@components/Input';
+import { InfoIcon, SendHorizonalIcon } from '@components/Icons';
+import { Input } from '@components/input/Input';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@components/Tooltip';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Meta configuration
@@ -78,6 +84,38 @@ const meta = {
         type: { summary: 'string' },
       },
     },
+    label: {
+      description: 'Optional label',
+      control: { type: 'text' },
+      table: {
+        defaultValue: { summary: 'text' },
+        type: { summary: 'string' },
+      },
+    },
+    contextualHelp: {
+      description: 'Optional contextual help',
+      control: { type: 'text' },
+      table: {
+        defaultValue: { summary: 'text' },
+        type: { summary: 'string' },
+      },
+    },
+    isInvalid: {
+      description: 'Optional validation error',
+      control: { type: 'boolean' },
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    errorMessage: {
+      description: 'Optional error message',
+      control: { type: 'text' },
+      table: {
+        defaultValue: { summary: 'text' },
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     size: 'md',
@@ -118,5 +156,40 @@ export const WithSuffixIcon: Story = {
   render: Template,
   args: {
     iconAfter: <SendHorizonalIcon />,
+  },
+};
+
+export const WithLabel: Story = {
+  render: Template,
+  args: {
+    label: 'Email Address',
+  },
+};
+
+export const WithContextualHelp: Story = {
+  render: Template,
+  args: {
+    label: 'Email Address',
+    contextualHelp: (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <InfoIcon size={12} />
+          </TooltipTrigger>
+          <TooltipContent>
+            We will never share your email with anyone else.
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    ),
+  },
+};
+
+export const WithError: Story = {
+  render: Template,
+  args: {
+    label: 'Email Address',
+    isInvalid: true,
+    errorMessage: 'This email already exists, please try another one.',
   },
 };

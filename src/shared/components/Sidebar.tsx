@@ -5,7 +5,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import * as React from 'react';
 import { Button } from './Button';
 import { PanelLeftIcon } from './Icons';
-import { Input } from './Input';
+import { Input } from './input/Input';
 import { Separator } from './Separator';
 import { Sheet, SheetContent } from './Sheet';
 import { Skeleton } from './Skeleton';

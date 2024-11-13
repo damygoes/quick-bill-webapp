@@ -13,6 +13,7 @@ const labelVariants = cva(
         disabled: 'text-primary/40 pointer-events-none',
       },
       size: {
+        xs: 'text-xs',
         sm: 'text-xs',
         md: 'text-sm',
         lg: 'text-base',
