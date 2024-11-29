@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { SearchIcon } from './Icons';
-import { Input } from './Input';
+import { Input } from './input/Input';
 
 type SearchbarProps = {
   value: string;

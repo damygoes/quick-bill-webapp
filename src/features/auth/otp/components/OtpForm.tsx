@@ -12,7 +12,7 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@components/InputOtp';
+} from '@components/input/InputOtp';
 import { useToast } from '@components/toast/useToast';
 import Typography from '@components/Typography';
 import { loginWithOtp } from '@features/auth/requests';

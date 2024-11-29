@@ -1,6 +1,7 @@
 import { createIcon } from '@shared/utils/createIcon';
 import {
   Building2,
+  Info,
   Languages,
   LayoutDashboard,
   LifeBuoy,
@@ -34,12 +35,14 @@ const LanguagesIcon = createIcon(Languages);
 const SunIcon = createIcon(Sun);
 const MoonIcon = createIcon(Moon);
 const SearchIcon = createIcon(Search);
+const InfoIcon = createIcon(Info);
 
 export {
   ClientsIcon,
   CompaniesIcon,
   DashboardIcon,
   FeedbackIcon,
+  InfoIcon,
   InvoiceIcon,
   LanguagesIcon,
   LoaderIcon,
